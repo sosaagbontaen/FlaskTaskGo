@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlaskTaskGo!</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.js"></script>
+</head>
+<body>
+    <div style="margin-top: 50px;" class="ui container">
+
+    <h1 class="ui center aligned header">FlaskTaskGo!</h1>
+    <form class="ui form" action="/add" method="post">
+        <div class="field">
+            <label form="title"></label>
+            <input type="text" name="title" placeholder="Task Name...">
+            <button class="ui blue button" type="submit">+</button>
+        </div>
+    </form>
+    
+    {%for task in task_list_param%}
+    <div class="ui segment">
+        {%if task.complete == False %}
+            <p class="ui big header">{{ task.id }} | {{ task.title}}</p>
+        {%else%}
+            <del><p class="ui big header">{{ task.id }} | {{ task.title}}</p></del>
+        {% endif %}
+        
+        {%if task.complete == False %}
+            <a class="ui orange button" href="/update/{{ task.id }}">☐</a>
+        {%else%}
+            <a class="ui green button" href="/update/{{ task.id }}">☑</a>
+        {% endif %}
+        
+        <a class="ui red button" href="/delete/{{ task.id }}">🗑</a>
+        
+        
+        <br>
+    </div>
+    {%endfor%}
+    </div>
+</body>
+</html>
