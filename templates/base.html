@@ -12,6 +12,7 @@
     <div style="margin-top: 50px;" class="ui container">
 
     <h1 class="ui center aligned header">FlaskTaskGo!</h1>
+    <!--SOFTWARE CONCEPT : Button/DOM Events-->
     <form class="ui form" action="/add" method="post">
         <div class="field">
             <label form="title"></label>
@@ -20,6 +21,7 @@
         </div>
     </form>
     
+    <!--SOFTWARE CONCEPT : CONTROL FLOW-->
     {%for task in task_list_param%}
     <div class="ui segment">
         {%if task.complete == False %}
@@ -33,10 +35,7 @@
         {%else%}
             <a class="ui green button" href="/update/{{ task.id }}">☑</a>
         {% endif %}
-        
         <a class="ui red button" href="/delete/{{ task.id }}">🗑</a>
-        
-        
         <br>
     </div>
     {%endfor%}
